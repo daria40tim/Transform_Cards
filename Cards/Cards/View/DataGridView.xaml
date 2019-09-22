@@ -1,0 +1,79 @@
+﻿<UserControl x:Class="Cards.View.DataGridView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Cards.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <!--gridvm:DataGridViewModel x:Key="DataGridViewModel"/-->
+        <Style TargetType="ListBox" x:Key="horizontallisttemp">
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <DataGrid SelectedItem="{Binding SelectedCard}" x:Name="dataGrid" IsReadOnly="True" ItemsSource="{Binding DataGridVM.CardsCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" Tag="{Binding DataContext, ElementName=DataGridV}" HorizontalAlignment="Stretch" Width="auto">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Тип" Binding="{Binding Type}" Width="auto"/>
+                <DataGridTextColumn Header="Мощность" Binding="{Binding  Power}"  Width="auto"/>
+                <DataGridTextColumn Header="Ед. изм. мощности" Binding="{Binding PowerMeasure}" Width="auto"/>
+                <DataGridTemplateColumn Header="Перв. напряжение" Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate >
+                            <ListBox ItemsSource="{Binding  Pr_Voltage.Values}" Style="{StaticResource horizontallisttemp}">
+                            </ListBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Втор. напряжение"  Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ListBox ItemsSource="{Binding  Sec_Voltage}" BorderThickness="0">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <ListBox Style="{StaticResource horizontallisttemp}" ItemsSource="{Binding Values}"/>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridCheckBoxColumn Header="Экран." Binding="{Binding IsShielded}"  Width="auto"/>
+                <DataGridTextColumn Header="Дата создания" Binding="{Binding DateofCreation}"  Width="auto"/>
+                <DataGridCheckBoxColumn Header="Заявка" Binding="{Binding Bid}"  Width="auto"/>
+                <DataGridCheckBoxColumn Header="Не проверен" Binding="{Binding IsNotTested}"  Width="auto"/>
+                <DataGridTemplateColumn Header="Файл" Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock>
+                                <Hyperlink Command="{Binding DataContext.OpenFileCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}">
+                                    <TextBlock Text="{Binding CardFile}"/>
+                                    </Hyperlink>
+                            </TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Примечание" Binding="{Binding Addition}"  Width="auto"/>
+                <DataGridTextColumn Header="Тип соединения" Binding="{Binding ConnectionType}"  Width="auto"/>
+                <DataGridTextColumn Header="Кол-во катушек" Binding="{Binding NumberofCoils}"  Width="auto"/>
+                <DataGridTemplateColumn Header="Выбрать" Width="40">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button IsEnabled="True" Height="20" Width="20" Command="{Binding DataContext.ChangeStageCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

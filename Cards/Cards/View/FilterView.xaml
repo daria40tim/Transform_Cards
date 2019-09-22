@@ -1,0 +1,56 @@
+﻿<UserControl x:Class="Cards.View.FilterView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Cards.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <Label Content="Выберите тип трансформатора:"/>
+            <ComboBox SelectedItem="{Binding FilterVM.SelectedType}" ItemsSource="{Binding FilterVM.Types}" MinHeight="50"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1">
+            <Label Content="Введите мощность:"/>
+            <TextBox Text="{Binding FilterVM.Power}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2">
+            <Label Content="Первичное напряжение:"/>
+            <TextBox Text="{Binding FilterVM.Pr_Voltage}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="3">
+            <Label Content="Вторичное напряжение:"/>
+            <TextBox Text="{Binding FilterVM.Sec_Voltage}"/>
+        </StackPanel>
+        <CheckBox Grid.Row="4" IsChecked="{Binding FilterVM.Is_Schielded}" Content="Экран"/>
+        <CheckBox Grid.Row="5" IsChecked="{Binding FilterVM.Bid}" Content="Заявка"/>
+        <CheckBox Grid.Row="6" IsChecked="{Binding FilterVM.Is_Not_Tested}" Content="Нуждается в проверке"/>
+        <StackPanel Grid.Row="7">
+            <Label Content="Тип соединения (для трехфазных трансформаторов):"/>
+            <TextBox Text="{Binding FilterVM.Conn_Type}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="8">
+            <Label Content="Количество катушек:"/>
+            <TextBox Text="{Binding FilterVM.Coil_Num}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="9">
+            <Label Content="Единицы измерения мощности: "/>
+            <TextBox Text="{Binding FilterVM.Measure}"/>
+        </StackPanel>
+        <Button Grid.Row="10" Content="Поиск" Command="{Binding SearchCommand}"/>
+    </Grid>
+</UserControl>

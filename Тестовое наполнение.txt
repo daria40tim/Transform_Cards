@@ -1,0 +1,57 @@
+BEGIN;
+INSERT INTO public.worker(
+	worker_id, name, login, password, job)
+	VALUES (default, 'Егорова Т.М.', 'egorova', '1234', 'Инженер-технолог')
+RETURNING *;
+END;
+
+
+BEGIN;
+INSERT INTO public.tp_card(
+	card_id, tr_type, tr_power, pr_voltage, sec_voltage, is_shielded, bd_date, author, bid, is_not_tested, picture, card_file, addition, conn_type, coil_num, measure)
+	VALUES 
+	(default, 'ОСМ', 0.1, '380-660', '24-36', false, '2016-05-30', 1, false, false, '1.png', '380-660   24-36.doc', '', NULL, NULL, 'кВа'),
+	(default, 'ОСМ', 1.2, '220', '20', false, '2015-04-20', 1, true, false, '2.png', 'ОСМ-1,2  220  20 1 кат.doc', '', NULL, 1, 'кВа'),
+	(default, 'ОСМ1', 0.25, '380', '220/220', false, '2016-06-16', 1, false, false, '3.png', 'ОСМ-0,25   380  110  36 24.doc', '', NULL, NULL, 'кВа'),
+	(default, 'ОСМ', 1.0, '220', '5-22-110/24', false, '2018-07-05', 1, false, false, '4.png', '220  5-22-110  24.doc', 'Увелич ветки', NULL, NULL, 'кВа'),
+	(default, 'ОСМ', 0.63, '380-660-1140', '36-110/42/110-220', true, '2014-11-07', 1, false, true, '5.png', '380-660-1140 эксперим.doc', '', NULL, NULL, 'кВа')
+RETURNING *;
+END;
+
+
+BEGIN;
+INSERT INTO public.nomenclature(
+	id_nom, title, feature, measure)
+	VALUES 
+	(default, 'Колодка  клемная', 'П/Э 12*10', 'секций'),
+	(default, 'Наконечник', '009', 'шт.'),
+	(default, 'Наконечник', 'ТМЛ-25', 'шт.'),
+	(default, 'Болт лат.', 'М8х40', 'шт.'),
+	(default, 'Панель-БТЛИ', '745 112 102', 'шт.'),
+	(default, 'Болт ст.', 'М6х30', 'шт.'),
+	(default, 'Гайка', '  ст. М6', 'шт.'),
+	(default, 'Шайба', '6 ст.', 'шт.'),
+	(default, 'Шайба', '6.65Г', 'шт.'),
+	(default, 'Панель-БТЛИ', '745 112 034', 'шт.')
+RETURNING *;
+END;
+
+
+BEGIN;
+INSERT INTO public.tr_nom_ref(
+	id_ref, id_card, id_nom, count)
+	VALUES 
+	(default, 2, 1, 6),
+	(default, 3, 2, 2),
+	(default, 3, 3, 2),
+	(default, 3, 4, 2),
+	(default, 3, 5, 1),
+	(default, 4, 1, 6),
+	(default, 5, 2, 16),
+	(default, 5, 6, 8),
+	(default, 5, 7, 16),
+	(default, 5, 8, 24),
+	(default, 5, 9, 16),
+	(default, 5, 10, 2)
+RETURNING *;
+END;
