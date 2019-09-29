@@ -31,7 +31,7 @@ namespace Cards.ViewModel
         private void SearchMethod()
         {
             SelectedType = FilterVM.SelectedType;
-            string typo = "";
+            string typo = FilterVM.SelectedType;
             string pow = "";
             string first = "";
             string sec = "";
@@ -44,7 +44,7 @@ namespace Cards.ViewModel
             string searchStr = "select card_id, tr_type, tr_power, pr_voltage, sec_voltage, is_shielded, bd_date, author, bid, is_not_tested, picture, card_file, addition, conn_type, coil_num, measure from tp_card where";
             if (FilterVM.SelectedType != null)
             {
-                typo = " tr_type = '" + SelectedType+"'";
+                typo = " tr_type = '" + typo + "'";
             }
             if (true)
             {

@@ -22,7 +22,7 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0">
             <Label Content="Выберите тип трансформатора:"/>
-            <ComboBox SelectedItem="{Binding FilterVM.SelectedType}" ItemsSource="{Binding FilterVM.Types}" MinHeight="50"/>
+            <ComboBox SelectedItem="{Binding FilterVM.SelectedType}" ItemsSource="{Binding FilterVM.Types, Mode=TwoWay}" MinHeight="50"/>
         </StackPanel>
         <StackPanel Grid.Row="1">
             <Label Content="Введите мощность:"/>
