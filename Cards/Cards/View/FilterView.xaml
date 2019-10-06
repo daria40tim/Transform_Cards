@@ -22,34 +22,34 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0">
             <Label Content="Выберите тип трансформатора:"/>
-            <ComboBox SelectedItem="{Binding FilterVM.SelectedType}" ItemsSource="{Binding FilterVM.Types, Mode=TwoWay}" MinHeight="50"/>
+            <ComboBox SelectedItem="{Binding SelectedType}" ItemsSource="{Binding Types, Mode=TwoWay}" MinHeight="50"/>
         </StackPanel>
         <StackPanel Grid.Row="1">
             <Label Content="Введите мощность:"/>
-            <TextBox Text="{Binding FilterVM.Power}"/>
+            <TextBox Text="{Binding Power}"/>
         </StackPanel>
         <StackPanel Grid.Row="2">
             <Label Content="Первичное напряжение:"/>
-            <TextBox Text="{Binding FilterVM.Pr_Voltage}"/>
+            <TextBox Text="{Binding Pr_Voltage}"/>
         </StackPanel>
         <StackPanel Grid.Row="3">
             <Label Content="Вторичное напряжение:"/>
-            <TextBox Text="{Binding FilterVM.Sec_Voltage}"/>
+            <TextBox Text="{Binding Sec_Voltage}"/>
         </StackPanel>
-        <CheckBox Grid.Row="4" IsChecked="{Binding FilterVM.Is_Schielded}" Content="Экран"/>
-        <CheckBox Grid.Row="5" IsChecked="{Binding FilterVM.Bid}" Content="Заявка"/>
-        <CheckBox Grid.Row="6" IsChecked="{Binding FilterVM.Is_Not_Tested}" Content="Нуждается в проверке"/>
+        <CheckBox Grid.Row="4" IsChecked="{Binding Is_Schielded}" Content="Экран"/>
+        <CheckBox Grid.Row="5" IsChecked="{Binding Bid}" Content="Заявка"/>
+        <CheckBox Grid.Row="6" IsChecked="{Binding Is_Not_Tested}" Content="Нуждается в проверке"/>
         <StackPanel Grid.Row="7">
             <Label Content="Тип соединения (для трехфазных трансформаторов):"/>
-            <TextBox Text="{Binding FilterVM.Conn_Type}"/>
+            <TextBox Text="{Binding Conn_Type}"/>
         </StackPanel>
         <StackPanel Grid.Row="8">
             <Label Content="Количество катушек:"/>
-            <TextBox Text="{Binding FilterVM.Coil_Num}"/>
+            <TextBox Text="{Binding Coil_Num}"/>
         </StackPanel>
         <StackPanel Grid.Row="9">
             <Label Content="Единицы измерения мощности: "/>
-            <TextBox Text="{Binding FilterVM.Measure}"/>
+            <TextBox Text="{Binding Measure}"/>
         </StackPanel>
         <Button Grid.Row="10" Content="Поиск" Command="{Binding SearchCommand}"/>
     </Grid>

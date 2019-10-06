@@ -28,6 +28,6 @@
         </Grid.ColumnDefinitions>
         <gridv:DataGridView Style="{StaticResource LabelStyle}" Grid.Column="2" x:Name="uGrid" DataContext="{StaticResource MainWindowVM}" Width="auto" Height="auto" VerticalAlignment="Stretch"/>
         <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Center" MaxWidth="5"/>
-        <gridv:FilterView Style="{StaticResource LabelStyle}" Grid.Column="0" x:Name="uFilter" DataContext="{StaticResource MainWindowVM}" Width="auto" Height="auto" VerticalAlignment="Stretch"/>
+        <gridv:FilterView Style="{StaticResource LabelStyle}" Grid.Column="0" x:Name="uFilter" DataContext="{StaticResource FilterVM}" Width="auto" Height="auto" VerticalAlignment="Stretch"/>
     </Grid>
 </Window>

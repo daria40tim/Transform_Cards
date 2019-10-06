@@ -7,28 +7,30 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Cards
 {
-    public class Collection
+    public class Collection: DependencyObject
     {
         public static ObservableCollection<Card> Cards { get; set; }
+
         public static  ObservableCollection<Worker> Workers { get; set; }
         public static void FillData()
         {
             Workers = new ObservableCollection<Worker>();
             Cards = new ObservableCollection<Card>();
             Workers = ReadWorkers();
-            Cards = ReadCards();
+            Cards = ReadCards("");
         }
 
-        public static ObservableCollection<Card> ReadCards()
+        public static ObservableCollection<Card> ReadCards(string searchStr)
         {
             ObservableCollection<Card> Cards = new ObservableCollection<Card>();
-            string queryString = "select card_id, tr_type, tr_power, pr_voltage, sec_voltage, is_shielded, bd_date, author, bid, is_not_tested, picture, card_file, addition, conn_type, coil_num, measure from tp_card";
+            if (searchStr == "") { searchStr = "select card_id, tr_type, tr_power, pr_voltage, sec_voltage, is_shielded, bd_date, author, bid, is_not_tested, picture, card_file, addition, conn_type, coil_num, measure from tp_card"; }
             using (NpgsqlConnection connection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString))
             {
-                NpgsqlCommand command = new NpgsqlCommand(queryString, connection);
+                NpgsqlCommand command = new NpgsqlCommand(searchStr, connection);
                 connection.Open();
                 NpgsqlDataReader reader = command.ExecuteReader();
                 try
