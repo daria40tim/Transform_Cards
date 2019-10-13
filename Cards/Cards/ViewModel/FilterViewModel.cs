@@ -53,8 +53,6 @@ namespace Cards.ViewModel
             else { mesh = ""; }
             if (SelectedType != null) { searchStr += " (tr_type = '" + typo + "')"; }
             else { typo = ""; }
-           // searchStr = searchStr+" and "+typo+ " and " + pow + " and " + first + " and " + sec + " and " + shield + " and " + bid + " and " + test + " and " + coils + " and " + mesh;
-            MessageBox.Show(searchStr);
             CardCollection = Collection.ReadCards(searchStr);
         }
 
@@ -196,8 +194,11 @@ namespace Cards.ViewModel
 
         // Using a DependencyProperty as the backing store for CardCollection.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty CardCollectionProperty =
-            DependencyProperty.Register("CardCollection", typeof(ObservableCollection<Card>), typeof(FilterViewModel), new PropertyMetadata(null));
+            DependencyProperty.Register("CardCollection", typeof(ObservableCollection<Card>), typeof(FilterViewModel), new PropertyMetadata(null, OnCardCollectionChanged));
 
-
+        private static void OnCardCollectionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            Collection.Cards = (ObservableCollection<Card>)e.NewValue;
+        }
     }
 }

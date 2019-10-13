@@ -12,12 +12,12 @@ namespace Cards.ViewModel
 {
     public class MainWindowViewModel: DependencyObject
     {
-        //public string standart_location = "F:\ \Учеба\диплом\Transform_Cards\";
         public MainWindowViewModel()
         {
             Collection.FillData();
             DataGridVM = new DataGridViewModel();
             FilterVM = new FilterViewModel();
+            CardsCollection = Collection.Cards;
             SelectedCard = DataGridVM.SelectedCard;
             InitializeCommands();
         }
@@ -96,6 +96,18 @@ namespace Cards.ViewModel
         // Using a DependencyProperty as the backing store for Workers.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty WorkersProperty =
             DependencyProperty.Register("Workers", typeof(ObservableCollection<Worker>), typeof(MainWindowViewModel), new PropertyMetadata(null));
+
+
+        public ObservableCollection<Card> CardsCollection
+        {
+            get { return (ObservableCollection<Card>)GetValue(CardsCollectionProperty); }
+            set { SetValue(CardsCollectionProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for CardsCollection.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty CardsCollectionProperty =
+            DependencyProperty.Register("CardsCollection", typeof(ObservableCollection<Card>), typeof(MainWindowViewModel), new PropertyMetadata(null));
+
 
     }
 }

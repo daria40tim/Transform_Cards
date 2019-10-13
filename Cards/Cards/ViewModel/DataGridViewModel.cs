@@ -13,9 +13,7 @@ namespace Cards.ViewModel
     {
         public DataGridViewModel()
         {
-            Collection.FillData();
-            CardsCollection = Collection.Cards;
-            
+            CardsCollection = Collection.Cards; 
         }
 
         public ObservableCollection<Card> CardsCollection
